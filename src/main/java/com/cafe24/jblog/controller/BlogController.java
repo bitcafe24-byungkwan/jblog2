@@ -40,7 +40,6 @@ public class BlogController {
 	}
 	
 	@CheckValid(role=Role.ADMIN )
-	@ResponseBody
 	@RequestMapping(value = {"/{id:[\\w]+}/admin/category"}, method = RequestMethod.GET)
 	public String blogCat(@PathVariable String id) {
 		
@@ -48,7 +47,6 @@ public class BlogController {
 	}
 	
 	@CheckValid(role=Role.ADMIN )
-	@ResponseBody
 	@RequestMapping(value = {"/{id:[\\w]+}/admin/write"}, method = RequestMethod.GET)
 	public String blogWrite(@PathVariable String id) {
 		
