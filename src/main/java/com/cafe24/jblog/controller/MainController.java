@@ -16,7 +16,7 @@ public class MainController {
 	public String main(Model model) {
 		
 	//	MainVo vo = mainService.getMainSettings();
-		System.out.println("-----------");
+
 //		model.addAttribute("mainvalues",vo);
 		return "main/index";
 	}
