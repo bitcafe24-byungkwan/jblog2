@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+
 <div class="header">
 	<h1 class="logo">JBlog</h1>
 	<ul class="menu">

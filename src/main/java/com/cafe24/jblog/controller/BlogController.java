@@ -75,4 +75,6 @@ public class BlogController {
 		
 		return "blog/blog-admin-write";
 	}
+	
+	
 }
