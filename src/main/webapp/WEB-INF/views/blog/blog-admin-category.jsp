@@ -26,38 +26,43 @@
 					<li class="selected">카테고리</li>
 					<li><a href="">글작성</a></li>
 				</ul>
-		      	<table class="admin-cat">
-		      		<tr>
-		      			<th>번호</th>
-		      			<th>카테고리명</th>
-		      			<th>포스트 수</th>
-		      			<th>설명</th>
-		      			<th>삭제</th>      			
-		      		</tr>
+				<table class="admin-cat">
 					<tr>
-						<td>3</td>
+						<th>번호</th>
+						<th>카테고리명</th>
+						<th>포스트 수</th>
+						<th>설명</th>
+						<th>삭제</th>
+					</tr>
+					<c:set var='catCount' value='${fn:length(categoryList) }' />
+					<c:forEach items='${categoryList }' var='vo' varStatus='status'>
+
+						<tr>
+							<td>${catCount - status.index }</td>
+							<td>${vo.name}</td>
+							<td>${vo.count}</td>
+							<td>${vo.description}</td>
+
+							<td><a
+								href="${pageContext.servletContext.contextPath }/${vo.userId}/admin/category/delete/${vo.id }"
+								class="del"><img
+									src="${pageContext.request.contextPath}/assets/images/delete.jpg">
+							</a></td>
+						</tr>
+					</c:forEach>
+					<tr>
+						<td>0</td>
 						<td>미분류</td>
 						<td>10</td>
 						<td>카테고리를 지정하지 않은 경우</td>
-						<td><img src="${pageContext.request.contextPath}/assets/images/delete.jpg"></td>
-					</tr>  
-					<tr>
-						<td>2</td>
-						<td>스프링 스터디</td>
-						<td>20</td>
-						<td>어쩌구 저쩌구</td>
-						<td><img src="${pageContext.request.contextPath}/assets/images/delete.jpg"></td>
+						<td></td>
 					</tr>
-					<tr>
-						<td>1</td>
-						<td>스프링 프로젝트</td>
-						<td>15</td>
-						<td>어쩌구 저쩌구</td>
-						<td><img src="${pageContext.request.contextPath}/assets/images/delete.jpg"></td>
-					</tr>					  
+
+
 				</table>
-      	
-      			<h4 class="n-c">새로운 카테고리 추가</h4>
+
+				<h4 class="n-c">새로운 카테고리 추가</h4>
+		      	<form action="${pageContext.servletContext.contextPath }/${authUser.id}/admin/category" method="post">
 		      	<table id="admin-cat-add">
 		      		<tr>
 		      			<td class="t">카테고리명</td>
@@ -65,13 +70,14 @@
 		      		</tr>
 		      		<tr>
 		      			<td class="t">설명</td>
-		      			<td><input type="text" name="desc"></td>
+		      			<td><input type="text" name="description"></td>
 		      		</tr>
 		      		<tr>
 		      			<td class="s">&nbsp;</td>
 		      			<td><input type="submit" value="카테고리 추가"></td>
 		      		</tr>      		      		
 		      	</table> 
+		      	</form>
 			</div>
 		</div>
 		<div id="footer">

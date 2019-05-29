@@ -60,7 +60,6 @@ public class CheckValidInterceptor extends HandlerInterceptorAdapter {
 		//6. @Auth(in class or method)가 붙어 있기 때문에
 		// 		인증 여부 Check
 		
-
 //		
 		//7. Role 가져오기
 		CheckValid.Role role = checkValid.role();

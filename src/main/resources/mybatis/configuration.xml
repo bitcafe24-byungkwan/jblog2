@@ -3,11 +3,11 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="uservo" type ="com.cafe24.jblog.vo.UserVo" />
-
+		<typeAlias alias="catvo" type ="com.cafe24.jblog.vo.CategoryVo" />
     </typeAliases>
     	
 	<mappers>
 		<mapper resource="mybatis/mapper/user.xml" />
-	
+		<mapper resource="mybatis/mapper/category.xml" />
 	</mappers>
 </configuration>
