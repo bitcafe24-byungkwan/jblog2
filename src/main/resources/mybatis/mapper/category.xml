@@ -12,7 +12,8 @@
 	<select id="getListByUserId" resultType="catvo" parameterType="string">
 	<![CDATA[
 		select id, name, description, date_format(reg_date, '%Y-%m-%d %H:%i:%s') as regDate, user_id as userId
-			from category
+		,(select count(*) from post where category_id = a.id) as count
+			from category a
 			where user_id = #{value}
 			order by reg_date desc
 			]]>

@@ -8,30 +8,32 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>JBlog</title>
 <Link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
+<script
+	src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-1.9.0.js"></script>
 </head>
 <body>
 	<div id="container">
-		<c:import url='/WEB-INF/views/includes/admin-header.jsp' />
+		<c:import url='/WEB-INF/views/includes/blog-header.jsp' />
 		<div id="wrapper">
-			<div id="content" class="full-screen">
+			<div id="content" class="full-screen">				
 				<ul class="admin-menu">
 					<li class="selected">기본설정</li>
-					<li><a href="">카테고리</a></li>
-					<li><a href="">글작성</a></li>
+					<li><a href="${pageContext.servletContext.contextPath }/${requestScope.blogId}/admin/category">카테고리</a></li>
+					<li><a href="${pageContext.servletContext.contextPath }/${requestScope.blogId}/admin/write">글작성</a></li>
 				</ul>
-				<form action="" method="post">
+				<form action="${pageContext.servletContext.contextPath }/${authUser.id}/admin/basic" method="post" enctype="multipart/form-data">
 	 		      	<table class="admin-config">
 			      		<tr>
 			      			<td class="t">블로그 제목</td>
-			      			<td><input type="text" size="40" name="title"></td>
+			      			<td><input type="text" size="40" name="title" value = "${blogInfo.title }"></td>
 			      		</tr>
 			      		<tr>
 			      			<td class="t">로고이미지</td>
-			      			<td><img src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg"></td>      			
+			      			<td><img id="sampleimg" src="${pageContext.request.contextPath}/logos/${blogInfo.logo}"></td>
 			      		</tr>      		
 			      		<tr>
 			      			<td class="t">&nbsp;</td>
-			      			<td><input type="file" name="logo-file"></td>      			
+			      			<td><input id="imgInp" type="file" name="attach"></td>      			
 			      		</tr>           		
 			      		<tr>
 			      			<td class="t">&nbsp;</td>
@@ -44,5 +46,23 @@
 		<c:import url='/WEB-INF/views/includes/admin-footer.jsp' />
 		
 	</div>
+	 <script type="text/javascript">
+/* function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#sampleimg').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#imgInp").change(function() {
+readURL(this);
+}); */
+</script>
 </body>
+
+
+
 </html>

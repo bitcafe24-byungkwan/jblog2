@@ -4,6 +4,7 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 public class UserVo {
 	@NotEmpty
@@ -18,6 +19,22 @@ public class UserVo {
 	private String password;
 	private String joinDate;
 	private String title;
+	private String logo;
+	private MultipartFile attach;
+	
+	
+	public MultipartFile getAttach() {
+		return attach;
+	}
+	public void setAttach(MultipartFile attach) {
+		this.attach = attach;
+	}
+	public String getLogo() {
+		return logo;
+	}
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
 	public String getTitle() {
 		return title;
 	}
@@ -51,7 +68,7 @@ public class UserVo {
 	@Override
 	public String toString() {
 		return "UserVo [id=" + id + ", name=" + name + ", password=" + password + ", joinDate=" + joinDate + ", title="
-				+ title + "]";
+				+ title + ", logo=" + logo + ", attach=" + attach + "]";
 	}
 	
 	

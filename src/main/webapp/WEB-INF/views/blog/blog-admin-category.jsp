@@ -11,13 +11,13 @@
 </head>
 <body>
 	<div id="container">
-		<c:import url='/WEB-INF/views/includes/admin-header.jsp' />
+		<c:import url='/WEB-INF/views/includes/blog-header.jsp' />
 		<div id="wrapper">
 			<div id="content" class="full-screen">
 				<ul class="admin-menu">
-					<li><a href="">기본설정</a></li>
+					<li><a href="${pageContext.servletContext.contextPath }/${requestScope.blogId}/admin/basic">기본설정</a></li>
 					<li class="selected">카테고리</li>
-					<li><a href="">글작성</a></li>
+					<li><a href="${pageContext.servletContext.contextPath }/${requestScope.blogId}/admin/write">글작성</a></li>
 				</ul>
 				<table class="admin-cat">
 					<tr>
@@ -46,7 +46,7 @@
 					<tr>
 						<td>0</td>
 						<td>미분류</td>
-						<td>10</td>
+						<td>${unclassifiedCount }</td>
 						<td>카테고리를 지정하지 않은 경우</td>
 						<td></td>
 					</tr>

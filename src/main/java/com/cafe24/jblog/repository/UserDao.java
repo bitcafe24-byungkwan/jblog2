@@ -29,4 +29,9 @@ public class UserDao {
 		UserVo userVo = sqlSession.selectOne("user.getByIdAndPassword", map);
 		return userVo;
 	}
+
+	public Boolean updateBlog(UserVo vo) {
+		int count = sqlSession.update("user.updateBlog", vo);
+		return 1 == count;
+	}
 }

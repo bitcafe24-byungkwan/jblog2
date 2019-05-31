@@ -5,17 +5,9 @@
 	pageEncoding="UTF-8"%>
 
 <div id="header">
-	<h1>Spring 이야기</h1>
-	<ul>	
-	
-		<c:if test='${empty authUser }'>
-			<li><a href="${pageContext.servletContext.contextPath }/user/login">로그인</a></li>
-		</c:if>
-		<c:if test='${not empty authUser }'>
-			<li><a href="${pageContext.servletContext.contextPath }/user/logout">로그아웃</a></li>
-			<li><a href="">블로그 관리</a></li>		
-		</c:if>
-		<c:set var="URI" value="${pageContext.request.requestURL}" />
-		${URI }
+	<ul class="admin-menu">
+		<li><a href="">기본설정</a></li>
+		<li><a href="">카테고리</a></li>
+		<li class="selected">글작성</li>
 	</ul>
 </div>

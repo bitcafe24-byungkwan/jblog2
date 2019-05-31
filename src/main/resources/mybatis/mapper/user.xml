@@ -5,44 +5,24 @@
 	<insert id="insert" parameterType="uservo">
 	<![CDATA[
 	insert into users
-		values(#{id },#{name },#{password },now(),'default')
+		values(#{id },#{name },#{password },now(),#{title},'default.jpg')
 	]]>	
 	</insert>	
 	
 	<select id="getByIdAndPassword" resultType="uservo" parameterType='map'>
 	<![CDATA[
-	select id, name, join_date as joinDate, title joinDate from users
+	select id, name, join_date as joinDate, title, logo from users
 		where id=#{id } and password like #{password }					
 	]]>
 	</select>
 	
-	
-	<!--   -->
-	<select id="getByNo" resultType="uservo" parameterType='long'>
+	<update id="updateBlog" parameterType="uservo">
 	<![CDATA[
-	select no,name,email,gender 
-		from user  
-		where no= #{value }				
-	]]>
-	</select><!-- value 위치에 아무거나 써줘도 됨 ㅎ -->
-	
-	<update id="update" parameterType="uservo">
-	<![CDATA[
-	update user  
-		set gender = #{gender }
-	]]>	
-		<if test ="password != ''">
-		<![CDATA[
-			, password = #{password }
-		]]>	
-		</if>
-		<if test ="name != ''">
-		<![CDATA[
-			, name = #{name }
-		]]>	
-		</if>
-	<![CDATA[
-	where no=#{no}			
+	update users  
+		set title = #{title }, logo = #{logo}
+	where id=#{id}			
 	]]>
 	</update>
+	
+
 </mapper>

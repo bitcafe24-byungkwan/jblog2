@@ -6,13 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cafe24.jblog.repository.CategoryDao;
+import com.cafe24.jblog.repository.PostDao;
 import com.cafe24.jblog.vo.CategoryVo;
+import com.cafe24.jblog.vo.PostVo;
 
 @Service
 public class BlogService {
 	
 	@Autowired CategoryDao categoryDao;
-	
+	@Autowired PostDao postDao;
 	public Boolean addCategory(String id, String catName, String desc) {
 		CategoryVo vo = new CategoryVo();
 		vo.setUserId(id);
@@ -34,5 +36,23 @@ public class BlogService {
 		vo.setId(catIdx);
 		
 		return categoryDao.delete(vo);
+	}
+	
+	public Boolean addWrite(PostVo vo) {
+		
+		return postDao.insert(vo);
+	}
+
+	public List<PostVo> getPostList(String idx, Long catNo) {
+		if (catNo==-1) catNo=0L;
+		return postDao.getList(idx,catNo);
+	}
+
+	public PostVo getPost(String idx, Long postNo) {
+		return postDao.get(idx, postNo);
+	}
+
+	public Integer getCategoryCount(String id, Long catId) {
+		return postDao.getCatCount(id,catId);
 	}
 }

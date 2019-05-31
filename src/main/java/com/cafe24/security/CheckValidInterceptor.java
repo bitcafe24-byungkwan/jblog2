@@ -52,6 +52,7 @@ public class CheckValidInterceptor extends HandlerInterceptorAdapter {
 		UserVo userVo = userDao.get(tokens[1], "%%");
 
 		if (userVo == null) {
+			//response.sendError(HttpServletResponse.SC_NOT_FOUND);
 			response.sendRedirect(request.getContextPath());
 			return false;
 		}
@@ -59,8 +60,9 @@ public class CheckValidInterceptor extends HandlerInterceptorAdapter {
 		
 		//6. @Auth(in class or method)가 붙어 있기 때문에
 		// 		인증 여부 Check
-		
-//		
+		request.setAttribute("blogId", userVo.getId());
+		request.setAttribute("blogTitle", userVo.getTitle());
+		request.setAttribute("blogLogo", userVo.getLogo());
 		//7. Role 가져오기
 		CheckValid.Role role = checkValid.role();
 		if(role == Role.EXIST)
@@ -109,7 +111,6 @@ public class CheckValidInterceptor extends HandlerInterceptorAdapter {
 //		}
 //		
 //		//9. Admin Role 접근 check
-//		//TODO
 //		//authuser.getrole().equals(admin);
 //		
 		
