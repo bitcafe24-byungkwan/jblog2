@@ -12,46 +12,48 @@
 <Link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
 <script
 	src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-1.9.0.js" ></script>
-				<script>
-			
-				$(function(){
-					
+<script>
+	$(function() {
 
-					
-					$("#blog-id").keydown(function() {
-						$("#btn-checkemail").show();
-						$("#img-checkemail").hide();
-						document.getElementById('submitBtn').disabled=true;
-					});
-					$('#btn-checkemail').click(function(){
-						var blogId = $('#blog-id').val();
-						$.ajax({
-							url: "${pageContext.servletContext.contextPath}/user/api/checkIdDup?blogId="+blogId,
-							type:"get",
-							dataType:"json",
-							success:function(response){
-								if (response.result != 'success') {
-									console.log(response);
-									return;
-								}
-								if (response.data == true) {
-									console.log(response);
-									alert("아이디중복!");
-									$("#blog-id").focus().val("");
-									return;
-								}
-								$("#btn-checkemail").hide();
-								$("#img-checkemail").show();
-								$("#submitBtn").removeAttr("disabled");
-								
-							},
-							error:function(hxr,msg){
-								console.error("error:" + msg);
-							}
+		$("#blog-id").keydown(function() {
+			$("#btn-checkemail").show();
+			$("#img-checkemail").hide();
+			document.getElementById('submitBtn').disabled = true;
+		});
+		$('#btn-checkemail')
+				.click(
+						function() {
+							var blogId = $('#blog-id').val();
+							$
+									.ajax({
+										url : "${pageContext.servletContext.contextPath}/user/api/checkIdDup?blogId="
+												+ blogId,
+										type : "get",
+										dataType : "json",
+										success : function(response) {
+											if (response.result != 'success') {
+												console.log(response);
+												return;
+											}
+											if (response.data == true) {
+												console.log(response);
+												alert("아이디중복!");
+												$("#blog-id").focus().val("");
+												return;
+											}
+											$("#btn-checkemail").hide();
+											$("#img-checkemail").show();
+											$("#submitBtn").removeAttr(
+													"disabled");
+
+										},
+										error : function(hxr, msg) {
+											console.error("error:" + msg);
+										}
+									});
 						});
-					});
-				});
-			</script>
+	});
+</script>
 </head>
 <body>
 	<div class="center-content">

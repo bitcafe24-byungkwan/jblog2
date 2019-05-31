@@ -37,7 +37,8 @@ public class BlogController {
 	@RequestMapping(value = {"/{idx:[\\w]+}"} ,method = RequestMethod.GET)
 	public String list(@PathVariable String idx, Model model) {
 		
-
+		if("logos".equals(idx))
+			return "main/index";
 		PostVo viewPost = blogService.getPost(idx,-1L);
 		//System.out.println(viewPost);
 		//model.addAttribute("selectedPost",viewPost);
