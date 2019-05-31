@@ -54,4 +54,10 @@ public class UserService {
 
 		return userDao.updateBlog(vo);
 	}
+
+	public Boolean existEmail(String userId) {
+		
+		return ((userDao.get(userId, "%%")) != null);
+		
+	}
 }

@@ -47,7 +47,7 @@
 		
 	</div>
 	 <script type="text/javascript">
-/* function readURL(input) {
+function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function(e) {
@@ -59,7 +59,7 @@
 
 $("#imgInp").change(function() {
 readURL(this);
-}); */
+});
 </script>
 </body>
 

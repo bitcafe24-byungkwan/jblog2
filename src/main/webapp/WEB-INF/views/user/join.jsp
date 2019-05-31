@@ -10,6 +10,48 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>JBlog</title>
 <Link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
+<script
+	src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-1.9.0.js" ></script>
+				<script>
+			
+				$(function(){
+					
+
+					
+					$("#blog-id").keydown(function() {
+						$("#btn-checkemail").show();
+						$("#img-checkemail").hide();
+						document.getElementById('submitBtn').disabled=true;
+					});
+					$('#btn-checkemail').click(function(){
+						var blogId = $('#blog-id').val();
+						$.ajax({
+							url: "${pageContext.servletContext.contextPath}/user/api/checkIdDup?blogId="+blogId,
+							type:"get",
+							dataType:"json",
+							success:function(response){
+								if (response.result != 'success') {
+									console.log(response);
+									return;
+								}
+								if (response.data == true) {
+									console.log(response);
+									alert("아이디중복!");
+									$("#blog-id").focus().val("");
+									return;
+								}
+								$("#btn-checkemail").hide();
+								$("#img-checkemail").show();
+								$("#submitBtn").removeAttr("disabled");
+								
+							},
+							error:function(hxr,msg){
+								console.error("error:" + msg);
+							}
+						});
+					});
+				});
+			</script>
 </head>
 <body>
 	<div class="center-content">
@@ -29,6 +71,7 @@
 			<label class="block-label" for="blog-id">아이디</label>
 			<input id="blog-id" name="id" type="text"> 
 			<input id="btn-checkemail" type="button" value="id 중복체크">
+
 			<spring:hasBindErrors name="userVo">
 						<c:if test="${errors.hasFieldErrors('id') }">
 						<p style="font-weight:bold; color:red; text-align:left; padding:0">
@@ -43,13 +86,18 @@
 			<label class="block-label" for="password">패스워드</label>
 			<input id="password" name="password" type="password" />
 
-			<fieldset>
-				<legend>약관동의</legend>
-				<input id="agree-prov" type="checkbox" name="agreeProv" value="y">
-				<label class="l-float">서비스 약관에 동의합니다.</label>
-			</fieldset>
+			<spring:hasBindErrors name="userVo">
+						<c:if test="${errors.hasFieldErrors('password') }">
+						<p style="font-weight:bold; color:red; text-align:left; padding:0">
+							<spring:message
+									code="${errors.getFieldError( 'password' ).codes[0] }"
+									text="${errors.getFieldError( 'password' ).defaultMessage }" />
+						</p>
+						</c:if>
+			</spring:hasBindErrors>
 
-			<input type="submit" value="가입하기">
+
+			<input id = "submitBtn" type="submit" value="가입하기" disabled>
 
 		</form>
 	</div>

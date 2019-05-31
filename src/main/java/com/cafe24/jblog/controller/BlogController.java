@@ -90,7 +90,7 @@ public class BlogController {
 	}
 	@CheckValid(role=Role.ADMIN )
 	@RequestMapping(value = {"/{userId:[\\w]+}/admin/basic"},method = RequestMethod.POST)
-	public String writePost(@PathVariable String userId, UserVo vo, BindingResult result, Model model) {
+	public String updateBlogInfo(@PathVariable String userId, UserVo vo, BindingResult result, Model model) {
 		System.out.println(userId);
 		System.out.println(vo);
 		

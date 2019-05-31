@@ -34,8 +34,8 @@
 				      				</c:forEach>
 				      			</select>
 				      		</td>
-				      	<!--  -->
-							<c:if test="${errors.hasFieldErrors('title') }">
+			<spring:hasBindErrors name="postVo">
+						<c:if test="${errors.hasFieldErrors('title') }">
 								<p
 									style="font-weight: bold; color: red; text-align: left; padding: 0">
 									<spring:message
@@ -43,6 +43,8 @@
 										text="${errors.getFieldError( 'title' ).defaultMessage }" />
 								</p>
 							</c:if> 
+			</spring:hasBindErrors>
+							
 						</tr>
 			      		<tr>
 			      			<td class="t">내용</td>
